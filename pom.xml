@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <!-- 继承说明：这里继承SpringBoot提供的父工程 -->
+    <parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<groupId>com.xiaozhuanglt</groupId>
+	<artifactId>mitutucue-springboot</artifactId>
+	<version>1.0.1</version>
+    <packaging>pom</packaging>
+	<name>mitutucue-springboot</name>
+	<description>mitutucue spring boot 项目构建</description>
+
+	<properties>
+		<java.version>1.8</java.version>
+        <lombok.version>1.18.24</lombok.version>
+    </properties>
+
+
+    <!--spring boot 依赖-->
+    <dependencies>
+
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!--内部模块依赖-->
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-web</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-controller</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-service</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-model</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-dao</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-dal-model</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-common</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-test</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>web/mitutucue-springboot-web</module>
+        <module>biz/mitutucue-springboot-controller</module>
+        <module>biz/mitutucue-springboot-service</module>
+        <module>biz/mitutucue-springboot-model</module>
+        <module>dal/mitutucue-springboot-dao</module>
+        <module>dal/mitutucue-springboot-dal-model</module>
+        <module>tools/mitutucue-springboot-common</module>
+        <module>test/mitutucue-springboot-test</module>
+    </modules>
+
+</project>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.xiaozhuanglt</groupId>
+        <artifactId>mitutucue-springboot</artifactId>
+        <version>1.0.1</version>
+    </parent>
+
+    <groupId>com.xiaozhuanglt</groupId>
+    <artifactId>mitutucue-springboot-service</artifactId>
+    <version>1.0.1</version>
+    <name>mitutucue-springboot-service</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot</artifactId>
+           <version>2.7.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter</artifactId>
+           <version>2.7.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-autoconfigure</artifactId>
+           <version>2.7.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-web</artifactId>
+           <version>2.7.6</version>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-devtools</artifactId>
+           <version>2.7.6</version>
+           <scope>runtime</scope>
+           <optional>true</optional>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-configuration-processor</artifactId>
+           <version>2.7.6</version>
+           <optional>true</optional>
+        </dependency>
+        <dependency>
+           <groupId>org.projectlombok</groupId>
+           <artifactId>lombok</artifactId>
+           <version>${lombok.version}</version>
+           <optional>true</optional>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-test</artifactId>
+           <version>2.7.6</version>
+           <scope>test</scope>
+        </dependency>
+        <dependency>
+           <groupId>org.springframework.restdocs</groupId>
+           <artifactId>spring-restdocs-mockmvc</artifactId>
+           <version>2.0.7.RELEASE</version>
+           <scope>test</scope>
+        </dependency>
+        <!--spring boot 依赖-->
+    </dependencies>
+
+
+</project>
