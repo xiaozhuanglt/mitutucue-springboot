@@ -50,6 +50,11 @@
             </dependency>
             <dependency>
                 <groupId>com.xiaozhuanglt</groupId>
+                <artifactId>mitutucue-springboot-integration</artifactId>
+                <version>1.0.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xiaozhuanglt</groupId>
                 <artifactId>mitutucue-springboot-model</artifactId>
                 <version>1.0.1</version>
             </dependency>
@@ -85,6 +90,7 @@
         <module>dal/mitutucue-springboot-dal-model</module>
         <module>tools/mitutucue-springboot-common</module>
         <module>test/mitutucue-springboot-test</module>
+        <module>biz/mitutucue-springboot-integration</module>
     </modules>
 
 </project>
