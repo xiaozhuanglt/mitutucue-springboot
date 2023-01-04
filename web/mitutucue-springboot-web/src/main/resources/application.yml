@@ -7,7 +7,7 @@ dubbo:
   application:
     name: dubbo-springboot-consumer
   protocol:
-    name: dubbo
+    name: dubbo_1
     port: 20881
   registry:
     id: nacos-registry
