@@ -11,8 +11,8 @@ dubbo:
     port: 20881
   registry:
     id: nacos-registry
-    address: nacos://120.46.223.251:8848
+    address: nacos://172.34.90.10:8848
   config-center:
-    address: nacos://120.46.223.251:8848
+    address: nacos://172.34.90.10:8848
   metadata-report:
-    address: nacos://120.46.223.251:8848
+    address: nacos://172.34.90.10:8848

@@ -1,6 +1,8 @@
 package com.xiaozhuanglt.mitutucue.springboot.controller;
 
 
+import com.xiaozhuanglt.mitutucue.springboot.service.interfaces.AmapService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,9 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/demoController")
 public class DemoController {
 
+    @Autowired
+    AmapService amapService;
+
     @GetMapping("consumerDemo")
     public int queryMitutucueArea() {
-        return Integer.valueOf(5);
+        try {
+            int i = amapService.queryMitutucueArea(Long.valueOf(5));
+            return i;
+        }catch (Exception e){
+            System.out.println(e);
+            return -1;
+        }
     }
 
     @GetMapping("/hello")

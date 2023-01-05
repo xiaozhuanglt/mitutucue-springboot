@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.xiaozhuanglt.mitutucue.springboot.controller",
-        "com.xiaozhuanglt.mitutucue.springboot.web"})
+@ComponentScan(basePackages = {"com.xiaozhuanglt.mitutucue.springboot"})
 @EnableDubbo(scanBasePackages = "com.xiaozhuanglt.mitutucue.springboot")
 public class MitutucueSpringbootWebApplication {
 
