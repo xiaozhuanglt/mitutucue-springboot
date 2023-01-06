@@ -10,4 +10,6 @@ public interface AmapService {
      * @return {@link Long}
      */
     int queryMitutucueArea(Long areaId);
+
+    String doSayHello(String name);
 }

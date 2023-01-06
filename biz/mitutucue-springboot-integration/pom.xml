@@ -40,6 +40,12 @@
             <artifactId>mitutucue-facade</artifactId>
             <version>1.0.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-samples-nacos-registry</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!--end-->
     </dependencies>
 

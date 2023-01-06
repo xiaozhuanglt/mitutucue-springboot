@@ -37,4 +37,9 @@ public class DemoController {
         return String.format("Hello %s!", name);
     }
 
+    @GetMapping("/doSayHello")
+    public String doSayHello(String name) {
+        return amapService.doSayHello(name);
+    }
+
 }

@@ -30,4 +30,9 @@ public class AmapServiceImpl implements AmapService {
         i = amapServiceConsummer.queryMitutucueArea(areaId);
         return i;
     }
+
+    @Override
+    public String doSayHello(String name) {
+        return amapServiceConsummer.doSayHello(name);
+    }
 }
