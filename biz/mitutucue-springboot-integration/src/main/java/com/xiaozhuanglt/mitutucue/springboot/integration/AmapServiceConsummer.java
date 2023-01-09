@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AmapServiceConsummer {
 
+    @DubboReference(version = "1.0.0",group = "dubbo")
     DemoFacade demoFacade;
 
     @DubboReference(version = "1.0.0")
