@@ -19,7 +19,7 @@ public class AmapServiceConsummer {
     @DubboReference(version = "1.0.0",group = "dubbo")
     DemoFacade demoFacade;
 
-    @DubboReference(version = "1.0.0")
+//    @DubboReference(version = "1.0.0")
     private GreetingService greetingService;
 
     public int queryMitutucueArea(Long areaId) {

@@ -2,6 +2,7 @@ package com.xiaozhuanglt.mitutucue.springboot.controller;
 
 
 import com.xiaozhuanglt.mitutucue.springboot.service.interfaces.AmapService;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +23,14 @@ public class DemoController {
     AmapService amapService;
 
     @GetMapping("consumerDemo")
-    public int queryMitutucueArea() {
+    public String queryMitutucueArea() {
         try {
             int i = amapService.queryMitutucueArea(Long.valueOf(5));
-            return i;
+            System.out.println("========="+MDC.get("traceId"));
+            return String.valueOf(i);
         }catch (Exception e){
             System.out.println(e);
-            return -1;
+            return String.valueOf(-1);
         }
     }
 
