@@ -18,15 +18,15 @@
   ~
   -->
 <configuration scan="true">
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
-    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+<!--    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />-->
+<!--    <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />-->
 
     <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -
                 %msg%n"/>
 
     <springProperty scope="context" name="application_name" source="spring.application.name"/>
-    <!--<springProperty scope="context" name="application_version" source="info.version"/>
-    <springProperty scope="context" name="environment" source="spring.profiles.active"/>-->
+    <springProperty scope="context" name="application_version" source="info.version"/>
+    <springProperty scope="context" name="environment" source="spring.profiles.active"/>
 
     <jmxConfigurator/>
 
@@ -37,37 +37,76 @@
         </encoder>
     </appender>
 
-    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>test.log</File>
+    <!--文件会打印出所有信息，这个log每次运行程序会自动清空，由append属性决定，这个也挺有用的，适合临时测试用-->
+    <appender name="stdout" class="ch.qos.logback.core.FileAppender">
+        <append>false</append>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <file>/Users/fin-10500/logs/mitutucue-springboot/stdout.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{traceId}]-[%-5level]-[%c{36}:%L]-[%m]%n</pattern>
+            <!-- encoding -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFileInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <file>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>test-%d{yyyy-MM-dd}.%i.log
-            </FileNamePattern>
+            <FileNamePattern>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-info-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
             <MaxHistory>10</MaxHistory>
-            <TimeBasedFileNamingAndTriggeringPolicy
-                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>5MB</maxFileSize>
+            </TimeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{traceId}]-[%-5level]-[%c{36}:%L]-[%m]%n</pattern>
+            <!-- encoding -->
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFileError" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <file>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-error-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <!--日志文件保留天数-->
+            <maxHistory>10</maxHistory>
+            <!--日志文件最大的大小-->
+            <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <MaxFileSize>5MB</MaxFileSize>
             </TimeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{traceId}]-[%-5level]-[%c{36}:%L]-[%m]%n
-            </pattern>
-        </layout>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--output format：%d is for date，%thread is for thread name，%-5level：loglevel with 5 character  %msg：log message，%n line breaker-->
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{traceId}]-[%-5level]-[%c{36}:%L]-[%m]%n</pattern>
+            <!-- encoding -->
+            <charset>UTF-8</charset>
+        </encoder>
     </appender>
 
-    <root>
-        <level value="error"/>
-        <level value="info"/>
-        <!-- <appender-ref ref="file" /> -->
+    <root level="debug">
         <appender-ref ref="console"/>
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="RollingFileInfo"/>
+        <appender-ref ref="RollingFileError"/>
     </root>
 
-    <logger name="org.apache.dubbo" additivity="false">
+    <!--<logger name="org.apache.dubbo" additivity="false">
         <level value="debug"/>
         <appender-ref ref="console"/>
     </logger>
 
     <logger name="org.dubbo.samples.protostuff.provider" level="DEBUG" additivity="false">
         <appender-ref ref="console"/>
-    </logger>
+    </logger>-->
+
 
 </configuration>

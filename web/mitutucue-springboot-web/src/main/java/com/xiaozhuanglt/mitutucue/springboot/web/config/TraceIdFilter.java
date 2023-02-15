@@ -42,7 +42,7 @@ public class TraceIdFilter implements Filter {
         }else {
             traceId = rpcServiceContext.getAttachment("traceId");
             if (traceId == null){
-                rpcServiceContext.setAttachment("traceId",traceId);
+                rpcServiceContext.setAttachment("traceId",MDC.get("traceId"));
             }
         }
         return invoker.invoke(invocation);
