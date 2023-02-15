@@ -2,6 +2,8 @@ package com.xiaozhuanglt.mitutucue.springboot.controller;
 
 
 import com.xiaozhuanglt.mitutucue.springboot.service.interfaces.AmapService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/demoController")
 public class DemoController {
+    Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
     AmapService amapService;
@@ -25,12 +28,17 @@ public class DemoController {
     @GetMapping("consumerDemo")
     public String queryMitutucueArea() {
         try {
+            System.out.println("=========1:"+MDC.get("traceId"));
+            logger.info("开始查询 muitutucueArea:");
+            logger.error("开始查询 muitutucueArea:");
             int i = amapService.queryMitutucueArea(Long.valueOf(5));
-            System.out.println("========="+MDC.get("traceId"));
-            return String.valueOf(i);
+            System.out.println("=========2:"+MDC.get("traceId"));
+            logger.info("查询muitutucueArea 结束:");
+            return String.valueOf(MDC.get("traceId"));
         }catch (Exception e){
+            logger.error("查询mitutucueArea错误:",e);
             System.out.println(e);
-            return String.valueOf(-1);
+            return String.valueOf(MDC.get("traceId"));
         }
     }
 

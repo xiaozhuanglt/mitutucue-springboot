@@ -14,6 +14,7 @@ import org.apache.dubbo.rpc.RpcContext;
 import org.apache.dubbo.rpc.RpcException;
 import org.apache.dubbo.rpc.RpcServiceContext;
 import org.slf4j.MDC;
+import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
@@ -27,29 +28,22 @@ public class TraceIdFilter implements Filter {
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
         RpcServiceContext rpcServiceContext = RpcContext.getServiceContext();
 
-        String traceId;
         if (null == rpcServiceContext.getUrl()){
             return invoker.invoke(invocation);
         }
-        if (rpcServiceContext.isConsumerSide()) {
-            traceId = MDC.get("traceId");
+        String traceId;
+        if (StringUtils.isEmpty(MDC.get("traceId"))){
             traceId = rpcServiceContext.getAttachment("traceId");
-            if (traceId == null) {
-                traceId = UUID.randomUUID().toString();
-                rpcServiceContext.setAttachment("traceId",traceId);
-            }
-            String traceId1 = MDC.get("traceId");
-            MDC.put("traceId", traceId);
-
-
-        }
-        if (rpcServiceContext.isProviderSide()) {
-            traceId = rpcServiceContext.getAttachment("traceId");
-            if (traceId == null) {
+            if (traceId == null){
                 traceId = UUID.randomUUID().toString();
                 rpcServiceContext.setAttachment("traceId",traceId);
             }
             MDC.put("traceId", traceId);
+        }else {
+            traceId = rpcServiceContext.getAttachment("traceId");
+            if (traceId == null){
+                rpcServiceContext.setAttachment("traceId",traceId);
+            }
         }
         return invoker.invoke(invocation);
     }
