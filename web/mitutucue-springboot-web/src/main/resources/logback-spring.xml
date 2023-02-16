@@ -43,7 +43,7 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>info</level>
         </filter>
-        <file>/Users/fin-10500/logs/mitutucue-springboot/stdout.log</file>
+        <file>${user.home}/logs/mitutucue-springboot/stdout.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{traceId}]-[%-5level]-[%c{36}:%L]-[%m]%n</pattern>
             <!-- encoding -->
@@ -55,9 +55,9 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>info</level>
         </filter>
-        <file>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-info.log</file>
+        <file>${user.home}/logs/mitutucue-springboot/mitutucue-springboot-info.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-info-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
+            <FileNamePattern>${user.home}/logs/mitutucue-springboot/mitutucue-springboot-info-%d{yyyy-MM-dd}-%i.log</FileNamePattern>
             <MaxHistory>10</MaxHistory>
             <TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
                 <maxFileSize>5MB</maxFileSize>
@@ -74,9 +74,9 @@
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>error</level>
         </filter>
-        <file>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-error.log</file>
+        <file>${user.home}/logs/mitutucue-springboot/mitutucue-springboot-error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/Users/fin-10500/logs/mitutucue-springboot/mitutucue-springboot-error-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <fileNamePattern>${user.home}/logs/mitutucue-springboot/mitutucue-springboot-error-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
             <!--日志文件保留天数-->
             <maxHistory>10</maxHistory>
             <!--日志文件最大的大小-->
