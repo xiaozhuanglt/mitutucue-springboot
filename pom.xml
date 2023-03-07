@@ -113,6 +113,18 @@
                 <artifactId>mitutucue-springboot-test</artifactId>
                 <version>1.0.1</version>
             </dependency>
+            <!--swagger 3-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>3.0.0</version>
+            </dependency>
+            <!--swagger 替换ui-->
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>swagger-bootstrap-ui</artifactId>
+                <version>1.9.6</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

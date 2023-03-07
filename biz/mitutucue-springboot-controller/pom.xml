@@ -33,6 +33,11 @@
             <version>${lombok.version}</version>
             <optional>true</optional>
         </dependency>
+        <!--swagger 3-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.xiaozhuanglt</groupId>

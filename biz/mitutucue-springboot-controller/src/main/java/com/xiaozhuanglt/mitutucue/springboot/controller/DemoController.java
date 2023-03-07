@@ -2,6 +2,8 @@ package com.xiaozhuanglt.mitutucue.springboot.controller;
 
 
 import com.xiaozhuanglt.mitutucue.springboot.service.interfaces.AmapService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -19,13 +21,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/demoController")
+@Api(value = "api 开放接口", tags = {"api开放接口"})
 public class DemoController {
     Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
     AmapService amapService;
 
-    @GetMapping("consumerDemo")
+    @ApiOperation("trace 调用链测试")
+    @GetMapping("traceDemo")
     public String queryMitutucueArea() {
         try {
             System.out.println("=========1:"+MDC.get("MDCID"));
