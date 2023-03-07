@@ -28,17 +28,17 @@ public class DemoController {
     @GetMapping("consumerDemo")
     public String queryMitutucueArea() {
         try {
-            System.out.println("=========1:"+MDC.get("traceId"));
+            System.out.println("=========1:"+MDC.get("MDCID"));
             logger.info("开始查询 muitutucueArea:");
             logger.error("开始查询 muitutucueArea:");
             int i = amapService.queryMitutucueArea(Long.valueOf(5));
-            System.out.println("=========2:"+MDC.get("traceId"));
+            System.out.println("=========2:"+MDC.get("MDCID"));
             logger.info("查询muitutucueArea 结束:");
-            return String.valueOf(MDC.get("traceId"));
+            return String.valueOf(MDC.get("MDCID"));
         }catch (Exception e){
             logger.error("查询mitutucueArea错误:",e);
             System.out.println(e);
-            return String.valueOf(MDC.get("traceId"));
+            return String.valueOf(MDC.get("MDCID"));
         }
     }
 

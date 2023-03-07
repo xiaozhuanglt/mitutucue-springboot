@@ -26,10 +26,10 @@ public class TraceInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-        String traceId = MDC.get("traceId");
+        String traceId = MDC.get("MDCID");
         if (StringUtils.isEmpty(traceId)){
             traceId = UUID.randomUUID().toString();
-            MDC.put("traceId",traceId);
+            MDC.put("MDCID",traceId);
         }
         return true;
     }

@@ -20,6 +20,11 @@
 <configuration scan="true">
     <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter" />
     <conversionRule conversionWord="wex" converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter" />
+    <!-- add converter for %tid -->
+    <conversionRule conversionWord="tid" converterClass="org.apache.skywalking.apm.toolkit.log.logback.v1.x.LogbackPatternConverter"/>
+    <!-- add converter for %sw_ctx -->
+    <conversionRule conversionWord="sw_ctx" converterClass="org.apache.skywalking.apm.toolkit.log.logback.v1.x.LogbackSkyWalkingContextPatternConverter"/>
+
 
     <property name="CONSOLE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -
                 %msg%n"/>
@@ -31,9 +36,26 @@
     <jmxConfigurator/>
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{traceId}]-[%-5level]-[%c:%L]-[%m]%n</pattern>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+                <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{MDCID}]-[%tid]-[%-5level]-[%c:%L]-[%m]%n</pattern>
+            </layout>
+        </encoder>
+        <!--<encoder>
+            <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{MDCID}]-[%X{tid}]-[%-5level]-[%c:%L]-[%m]%n</pattern>
             <charset>utf8</charset>
+        </encoder>-->
+    </appender>
+
+    <!--skywalking 采集日志-->
+    <appender name="grpc-log" class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.log.GRPCLogClientAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>info</level>
+        </filter>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.mdc.TraceIdMDCPatternLogbackLayout">
+                <Pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}]-[%t]-[%X{MDCID}]-[%X{tid}]-[%-5level]-[%c:%L]-[%m]%n</Pattern>
+            </layout>
         </encoder>
     </appender>
 
@@ -92,8 +114,9 @@
         </encoder>
     </appender>
 
-    <root level="debug">
+    <root level="info">
         <appender-ref ref="console"/>
+        <appender-ref ref="grpc-log"/>
         <appender-ref ref="stdout"/>
         <appender-ref ref="RollingFileInfo"/>
         <appender-ref ref="RollingFileError"/>

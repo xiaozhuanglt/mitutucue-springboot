@@ -32,17 +32,17 @@ public class TraceIdFilter implements Filter {
             return invoker.invoke(invocation);
         }
         String traceId;
-        if (StringUtils.isEmpty(MDC.get("traceId"))){
-            traceId = rpcServiceContext.getAttachment("traceId");
+        if (StringUtils.isEmpty(MDC.get("MDCID"))){
+            traceId = rpcServiceContext.getAttachment("MDCID");
             if (traceId == null){
                 traceId = UUID.randomUUID().toString();
-                rpcServiceContext.setAttachment("traceId",traceId);
+                rpcServiceContext.setAttachment("MDCID",traceId);
             }
-            MDC.put("traceId", traceId);
+            MDC.put("MDCID", traceId);
         }else {
-            traceId = rpcServiceContext.getAttachment("traceId");
+            traceId = rpcServiceContext.getAttachment("MDCID");
             if (traceId == null){
-                rpcServiceContext.setAttachment("traceId",MDC.get("traceId"));
+                rpcServiceContext.setAttachment("MDCID",MDC.get("MDCID"));
             }
         }
         return invoker.invoke(invocation);
