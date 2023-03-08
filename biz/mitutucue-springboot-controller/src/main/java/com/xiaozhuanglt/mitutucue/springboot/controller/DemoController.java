@@ -4,6 +4,8 @@ package com.xiaozhuanglt.mitutucue.springboot.controller;
 import com.xiaozhuanglt.mitutucue.springboot.service.interfaces.AmapService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.skywalking.apm.toolkit.trace.Trace;
+import org.apache.skywalking.apm.toolkit.trace.TraceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -30,6 +32,7 @@ public class DemoController {
 
     @ApiOperation("trace 调用链测试")
     @GetMapping("traceDemo")
+    @Trace
     public String queryMitutucueArea() {
         try {
             System.out.println("=========1:"+MDC.get("MDCID"));
@@ -38,7 +41,8 @@ public class DemoController {
             int i = amapService.queryMitutucueArea(Long.valueOf(5));
             System.out.println("=========2:"+MDC.get("MDCID"));
             logger.info("查询muitutucueArea 结束:");
-            return String.valueOf(MDC.get("MDCID"));
+
+            return String.format("mdcid:{%s}\nswid:{%s}",MDC.get("MDCID"), TraceContext.traceId());
         }catch (Exception e){
             logger.error("查询mitutucueArea错误:",e);
             System.out.println(e);
