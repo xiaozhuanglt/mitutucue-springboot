@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/demoController")
 @Api(value = "api 开放接口", tags = {"api开放接口"})
 public class DemoController {
-
     Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     @Autowired
